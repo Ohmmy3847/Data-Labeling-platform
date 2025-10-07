@@ -105,10 +105,10 @@ export default function TaskSummaryPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 p-4">
-      <div className="max-w-md mx-auto space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-green-50 pb-24">
+      <div className="max-w-2xl mx-auto p-4 space-y-6">
         {/* Header */}
-        <header className="flex items-center justify-between mb-6">
+        <header className="flex items-center justify-between mb-4">
           <Button
             onClick={() => router.push('/mobile/labeler')}
             variant="secondary"
@@ -124,19 +124,19 @@ export default function TaskSummaryPage() {
         {/* Overall Summary */}
         <Card variant="soft" padding="lg" className="border-2 border-blue-300 bg-gradient-to-r from-blue-100 to-green-100">
           <CardContent>
-            <div className="text-center space-y-4">
-              <div className="text-6xl">💰</div>
-              <h2 className="text-2xl font-bold text-gray-800">สรุปรายได้รวม</h2>
-              <div className="text-4xl font-bold text-green-600">
+            <div className="text-center space-y-3">
+              <div className="text-5xl">💰</div>
+              <h2 className="text-xl font-bold text-gray-800 break-words">สรุปรายได้รวม</h2>
+              <div className="text-3xl font-bold text-green-600 break-words">
                 ฿{totalEarnings.toFixed(2)}
               </div>
-              <div className="flex justify-center space-x-6 text-sm text-gray-600">
+              <div className="flex justify-center space-x-4 text-sm text-gray-600">
                 <div className="flex items-center space-x-1">
-                  <Target className="w-4 h-4" />
+                  <Target className="w-4 h-4 flex-shrink-0" />
                   <span>{totalTasks} งาน</span>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <Calendar className="w-4 h-4" />
+                  <Calendar className="w-4 h-4 flex-shrink-0" />
                   <span>วันนี้</span>
                 </div>
               </div>
@@ -147,30 +147,30 @@ export default function TaskSummaryPage() {
         {/* Task Breakdown */}
         <Card variant="soft" padding="lg" className="border-2 border-gray-300">
           <CardContent>
-            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
-              <TrendingUp className="w-5 h-5 mr-2" />
-              รายละเอียดตามงาน
+            <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center">
+              <TrendingUp className="w-5 h-5 mr-2 flex-shrink-0" />
+              <span className="break-words">รายละเอียดตามงาน</span>
             </h3>
             <div className="space-y-3">
               {taskSummaries.map((task) => (
                 <div
                   key={task.taskId}
-                  className={`p-4 rounded-xl border-2 ${getColorClasses(task.color)}`}
+                  className={`p-3 rounded-xl border-2 ${getColorClasses(task.color)}`}
                 >
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-2 mb-1">
+                  <div className="flex justify-between items-start gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center space-x-2 mb-1 flex-wrap">
                         <span className={`px-2 py-1 rounded-lg text-xs font-bold ${getBadgeColorClasses(task.color)}`}>
                           {task.taskId.toUpperCase()}
                         </span>
-                        <span className="font-bold text-gray-800">{task.taskName}</span>
+                        <span className="font-bold text-gray-800 text-sm break-words">{task.taskName}</span>
                       </div>
-                      <div className="text-sm text-gray-600">
+                      <div className="text-xs text-gray-600 break-words">
                         {task.completedItems} รายการ • {task.completedAt}
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xl font-bold text-gray-800">
+                    <div className="text-right flex-shrink-0">
+                      <div className="text-lg font-bold text-gray-800">
                         ฿{task.totalEarnings.toFixed(2)}
                       </div>
                     </div>
@@ -184,22 +184,22 @@ export default function TaskSummaryPage() {
         {/* Statistics */}
         <Card variant="soft" padding="lg" className="border-2 border-gray-300">
           <CardContent>
-            <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
-              <Award className="w-5 h-5 mr-2" />
+            <h3 className="text-base font-bold text-gray-800 mb-3 flex items-center">
+              <Award className="w-4 h-4 mr-2 flex-shrink-0" />
               สถิติ
             </h3>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3">
               <div className="text-center p-3 bg-white rounded-xl">
-                <div className="text-2xl font-bold text-blue-600">
+                <div className="text-xl font-bold text-blue-600">
                   {taskSummaries.reduce((sum, task) => sum + task.completedItems, 0)}
                 </div>
-                <div className="text-sm text-gray-600">รายการทั้งหมด</div>
+                <div className="text-xs text-gray-600">รายการทั้งหมด</div>
               </div>
               <div className="text-center p-3 bg-white rounded-xl">
-                <div className="text-2xl font-bold text-green-600">
+                <div className="text-xl font-bold text-green-600 break-words">
                   ฿{(totalEarnings / totalTasks).toFixed(2)}
                 </div>
-                <div className="text-sm text-gray-600">เฉลี่ยต่องาน</div>
+                <div className="text-xs text-gray-600">เฉลี่ยต่องาน</div>
               </div>
             </div>
           </CardContent>
@@ -209,7 +209,7 @@ export default function TaskSummaryPage() {
         <div className="space-y-3">
           <Button
             onClick={() => router.push('/mobile/labeler')}
-            className="w-full py-4 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-2xl font-bold text-lg shadow-lg hover:from-blue-700 hover:to-green-700 transition-all"
+            className="w-full py-3 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-2xl font-bold text-base shadow-lg hover:from-blue-700 hover:to-green-700 transition-all"
           >
             กลับทำงานต่อ
           </Button>
@@ -221,7 +221,7 @@ export default function TaskSummaryPage() {
               setTotalTasks(0);
             }}
             variant="secondary"
-            className="w-full py-4 bg-white text-gray-600 border-2 border-gray-300 rounded-2xl font-bold text-lg hover:bg-gray-50 transition-colors"
+            className="w-full py-3 bg-white text-gray-600 border-2 border-gray-300 rounded-2xl font-bold text-base hover:bg-gray-50 transition-colors"
           >
             ล้างประวัติ
           </Button>
