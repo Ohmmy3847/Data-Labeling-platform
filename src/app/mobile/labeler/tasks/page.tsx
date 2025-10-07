@@ -68,6 +68,14 @@ const difficultyNames = {
 export default function MobileTasksList() {
   const availableTasks = mockTasks.filter(task => task.completedBy.length === 0);
   const myTasks = mockTasks.filter(task => task.completedBy.includes('labeler1'));
+  
+  // Tasks actually displayed on the page
+  const displayedTasksFromList = availableTasks.slice(0, 10); // First 10 tasks from the list
+  
+  // Calculate stats from displayed tasks + t12 (featured task)
+  const totalReward = displayedTasksFromList.reduce((sum, task) => sum + task.reward, 0) + TASK_CONFIGS.t12.rate;
+  const totalTime = displayedTasksFromList.reduce((sum, task) => sum + task.estimatedTime, 0) + 45; // t12 estimated 45 min
+  const totalTasks = displayedTasksFromList.length + 1; // +1 for t12
 
   return (
     <ResponsivePage withBottomNav>
@@ -115,7 +123,7 @@ export default function MobileTasksList() {
           <Card variant="elevated" padding="md" className="border-3 border-gray-300">
             <CardContent>
               <div className="text-center">
-                <div className="text-fluid-lg sm:text-fluid-xl font-bold text-gray-900">{availableTasks.length}</div>
+                <div className="text-fluid-lg sm:text-fluid-xl font-bold text-gray-900">{totalTasks}</div>
                 <div className="text-fluid-xs sm:text-fluid-sm text-gray-700 font-semibold">งานใหม่</div>
               </div>
             </CardContent>
@@ -125,7 +133,7 @@ export default function MobileTasksList() {
             <CardContent>
               <div className="text-center">
                 <div className="text-fluid-lg sm:text-fluid-xl font-bold text-gray-900 break-words">
-                  ฿{availableTasks.reduce((sum, task) => sum + task.reward, 0).toFixed(2)}
+                  ฿{totalReward.toFixed(2)}
                 </div>
                 <div className="text-fluid-xs sm:text-fluid-sm text-gray-700 font-semibold">รางวัลรวม</div>
               </div>
@@ -136,7 +144,7 @@ export default function MobileTasksList() {
             <CardContent>
               <div className="text-center">
                 <div className="text-fluid-lg sm:text-fluid-xl font-bold text-gray-900">
-                  {Math.round(availableTasks.reduce((sum, task) => sum + task.estimatedTime, 0) / 60)}ช.
+                  {Math.round(totalTime / 60)}ช.
                 </div>
                 <div className="text-fluid-xs sm:text-fluid-sm text-gray-700 font-semibold">เวลารวม</div>
               </div>

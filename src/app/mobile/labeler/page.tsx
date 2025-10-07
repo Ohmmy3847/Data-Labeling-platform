@@ -13,6 +13,21 @@ import { mockLabelers, mockTasks } from '@/data/mockData';
 import { LABELER_REWARDS, SPECIAL_BONUSES } from '@/config/rewardsConfig';
 import { TASK_CONFIGS } from '@/config/taskConfig';
 
+// Helper function to get task config
+const getTaskConfig = (taskId: string) => {
+  return TASK_CONFIGS[taskId as keyof typeof TASK_CONFIGS];
+};
+
+// Helper function to get difficulty display
+const getDifficultyDisplay = (difficulty: string) => {
+  const displays = {
+    easy: { label: 'ง่าย', color: 'bg-green-200 text-green-900 border-green-400' },
+    medium: { label: 'ปานกลาง', color: 'bg-yellow-200 text-yellow-900 border-yellow-400' },
+    hard: { label: 'ยาก', color: 'bg-red-200 text-red-900 border-red-400' }
+  };
+  return displays[difficulty as keyof typeof displays] || displays.easy;
+};
+
 export default function MobileLabelerDashboard() {
   const currentUser = mockLabelers[0];
   const availableTasks = mockTasks.filter(task => !task.completedBy.includes(currentUser.id)).slice(0, 3);
@@ -97,39 +112,45 @@ export default function MobileLabelerDashboard() {
           </div>
           
           <div className="space-y-4">
-            {availableTasks.map((task) => (
-              <Link key={task.id} href={`/mobile/labeler/tasks/${task.id}`}>
-                <Card variant="elevated" padding="lg" className="group active:scale-95 transition-transform border-3 border-gray-300 shadow-lg">
-                  <CardContent>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-16 h-16 bg-orange-100 rounded-3xl flex items-center justify-center border-3 border-orange-400">
-                        <MessageCircle className="w-8 h-8 text-orange-600" />
-                      </div>
-                      
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-bold text-gray-900 text-base mb-1 line-clamp-1">
-                          งานวิเคราะห์ความรู้สึก
-                        </h3>
-                        <p className="text-gray-700 text-sm mb-2 font-medium line-clamp-2">
-                          {typeof task.content === 'string' 
-                            ? task.content.slice(0, 50) 
-                            : task.content?.text?.slice(0, 50) || 'เนื้อหางาน'
-                          }...
-                        </p>
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="bg-green-200 text-green-900 px-2 py-1 rounded-xl text-sm font-bold border-2 border-green-400">
-                            ง่าย
-                          </span>
-                          <span className="text-blue-700 font-bold text-lg">
-                            ฿{task.reward.toFixed(2)}
-                          </span>
+            {availableTasks.map((task) => {
+              const taskConfig = getTaskConfig(task.id);
+              const difficulty = getDifficultyDisplay(task.difficulty);
+              
+              return (
+                <Link key={task.id} href={`/mobile/labeler/tasks/${task.id}`}>
+                  <Card variant="elevated" padding="lg" className="group active:scale-95 transition-transform border-3 border-gray-300 shadow-lg">
+                    <CardContent>
+                      <div className="flex items-center space-x-4">
+                        <div className="w-16 h-16 bg-orange-100 rounded-3xl flex items-center justify-center border-3 border-orange-400">
+                          <span className="text-3xl">{taskConfig?.emoji || '📋'}</span>
+                        </div>
+                        
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-bold text-gray-900 text-base mb-1 line-clamp-1">
+                            {taskConfig?.name || 'งานใหม่'}
+                          </h3>
+                          <p className="text-gray-700 text-sm mb-2 font-medium line-clamp-2">
+                            {taskConfig?.description || 
+                              (typeof task.content === 'string' 
+                                ? task.content.slice(0, 50) 
+                                : task.content?.text?.slice(0, 50) || 'เนื้อหางาน')
+                            }...
+                          </p>
+                          <div className="flex items-center justify-between gap-2">
+                            <span className={`px-2 py-1 rounded-xl text-sm font-bold border-2 ${difficulty.color}`}>
+                              {difficulty.label}
+                            </span>
+                            <span className="text-blue-700 font-bold text-lg">
+                              {taskConfig?.reward || `฿${task.reward.toFixed(2)}`}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
           
           {/* Data Scraping Task - New */}
@@ -138,15 +159,15 @@ export default function MobileLabelerDashboard() {
               <CardContent>
                 <div className="flex items-center space-x-4">
                   <div className="w-16 h-16 bg-purple-100 rounded-3xl flex items-center justify-center border-3 border-purple-400">
-                    <FileText className="w-8 h-8 text-purple-600" />
+                    <span className="text-3xl">{TASK_CONFIGS.t12.emoji}</span>
                   </div>
                   
                   <div className="flex-1 min-w-0">
                     <h3 className="font-bold text-gray-900 text-base mb-1 line-clamp-1">
-                      🔍 Data Scraping
+                      🔍 {TASK_CONFIGS.t12.name}
                     </h3>
                     <p className="text-gray-700 text-sm mb-2 font-medium line-clamp-2">
-                      เก็บข้อมูลตาม requirement ที่กำหนด...
+                      {TASK_CONFIGS.t12.description}
                     </p>
                     <div className="flex items-center justify-between gap-2">
                       <span className="bg-purple-200 text-purple-900 px-2 py-1 rounded-xl text-sm font-bold border-2 border-purple-400">
