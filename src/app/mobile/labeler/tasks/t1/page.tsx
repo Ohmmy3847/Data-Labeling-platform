@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import TaskSummary from '@/components/shared/TaskSummary';
 import TaskHeader from '@/components/shared/TaskHeader';
 import BottomNavigation from '@/components/shared/BottomNavigation';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 interface TextBatch {
   id: number;
@@ -102,12 +103,12 @@ export default function TextSentimentBatch() {
       <TaskSummary
         taskResult={taskResult}
         taskInfo={{
-          name: 'การวิเคราะห์ความรู้สึก',
-          description: 'การวิเคราะห์ความรู้สึก',
-          emoji: '🎉',
-          color: 'blue',
-          unit: 'ข้อ',
-          rate: 0.12
+          name: TASK_CONFIGS.t1.name,
+          description: TASK_CONFIGS.t1.description,
+          emoji: TASK_CONFIGS.t1.emoji,
+          color: TASK_CONFIGS.t1.color,
+          unit: TASK_CONFIGS.t1.unit,
+          rate: TASK_CONFIGS.t1.rate
         }}
         onReset={resetForm}
       />
@@ -118,9 +119,9 @@ export default function TextSentimentBatch() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <TaskHeader
-        title="วิเคราะห์ความรู้สึก"
-        reward="฿0.12 / ข้อ"
-        color="blue"
+        title={TASK_CONFIGS.t1.title}
+        reward={TASK_CONFIGS.t1.reward}
+        color={TASK_CONFIGS.t1.color}
         completedCount={completedCount}
         totalCount={responses.length}
       />
@@ -132,7 +133,7 @@ export default function TextSentimentBatch() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-bold text-gray-900">📊 ความคืบหน้า</h3>
               <span className="text-lg font-bold text-blue-600">
-                ฿{(completedCount * 0.12).toFixed(2)}
+                ฿{(completedCount * TASK_CONFIGS.t1.rate).toFixed(2)}
               </span>
             </div>
             

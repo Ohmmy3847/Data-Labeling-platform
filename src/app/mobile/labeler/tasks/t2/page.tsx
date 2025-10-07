@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import TaskSummary from '@/components/shared/TaskSummary';
 import TaskHeader from '@/components/shared/TaskHeader';
 import BottomNavigation from '@/components/shared/BottomNavigation';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 interface ImageBatch {
   id: number;
@@ -109,7 +110,7 @@ export default function ImageTaggingBatch() {
 
   const submitBatch = () => {
     const completed = responses.filter(r => (r.tags?.length || 0) >= 3).length;
-    const earnings = completed * 0.15;
+    const earnings = completed * TASK_CONFIGS.t2.rate;
     
     // เก็บผลงานและแสดงหน้าสรุป
     setTaskResult({
@@ -138,12 +139,12 @@ export default function ImageTaggingBatch() {
       <TaskSummary
         taskResult={taskResult}
         taskInfo={{
-          name: 'การติดป้ายรูปภาพ',
-          description: 'การติดป้ายรูปภาพ',
-          emoji: '🎉',
-          color: 'purple',
-          unit: 'รูป',
-          rate: 0.15
+          name: TASK_CONFIGS.t2.name,
+          description: TASK_CONFIGS.t2.description,
+          emoji: TASK_CONFIGS.t2.emoji,
+          color: TASK_CONFIGS.t2.color,
+          unit: TASK_CONFIGS.t2.unit,
+          rate: TASK_CONFIGS.t2.rate
         }}
         onReset={resetForm}
       />
@@ -153,26 +154,13 @@ export default function ImageTaggingBatch() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white shadow-lg px-4 py-4 sticky top-0 z-50 border-b-4 border-purple-600">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Link href="/mobile/labeler/tasks">
-              <button className="w-10 h-10 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg">
-                <ArrowLeft className="w-5 h-5 text-white" />
-              </button>
-            </Link>
-            <div>
-              <h1 className="font-bold text-gray-900 text-lg">ติดป้ายรูปภาพ</h1>
-              <p className="text-base text-gray-700 font-medium">รางวัล: ฿0.15 / รูป</p>
-            </div>
-          </div>
-          
-          <div className="text-right">
-            <div className="text-2xl font-bold text-purple-600">{completedCount}/{responses.length}</div>
-            <div className="text-sm text-gray-600">เสร็จแล้ว</div>
-          </div>
-        </div>
-      </header>
+      <TaskHeader
+        title={TASK_CONFIGS.t2.title}
+        reward={TASK_CONFIGS.t2.reward}
+        color={TASK_CONFIGS.t2.color}
+        completedCount={completedCount}
+        totalCount={responses.length}
+      />
 
       <div className="px-4 py-6">
         {/* Progress Bar */}
@@ -181,7 +169,7 @@ export default function ImageTaggingBatch() {
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-bold text-gray-900">📊 ความคืบหน้า</h3>
               <span className="text-lg font-bold text-purple-600">
-                ฿{(completedCount * 0.15).toFixed(2)}
+                ฿{(completedCount * TASK_CONFIGS.t2.rate).toFixed(2)}
               </span>
             </div>
             
@@ -341,7 +329,7 @@ export default function ImageTaggingBatch() {
                 className="w-full py-4 bg-green-600 text-white rounded-2xl font-bold text-lg shadow-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
               >
                 <Check className="w-6 h-6" />
-                <span>ส่งชุดงาน (฿{(completedCount * 0.15).toFixed(2)})</span>
+                <span>ส่งชุดงาน (฿{(completedCount * TASK_CONFIGS.t2.rate).toFixed(2)})</span>
               </Button>
             </div>
           </CardContent>
