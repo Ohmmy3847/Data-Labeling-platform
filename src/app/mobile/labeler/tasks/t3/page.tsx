@@ -137,7 +137,7 @@ export default function ChatQAEvaluation() {
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded-xl">
                   <span className="text-gray-600">อัตราค่าจ้าง:</span>
-                  <span className="font-bold text-gray-800">฿TASK_CONFIGS.t3.rate ต่องาน</span>
+                  <span className="font-bold text-gray-800">฿{TASK_CONFIGS.t3.rate} ต่องาน</span>
                 </div>
                 <div className="flex justify-between items-center p-4 bg-orange-600 text-white rounded-xl">
                   <span className="text-lg font-bold">รวมทั้งหมด:</span>
@@ -204,7 +204,7 @@ export default function ChatQAEvaluation() {
             </Link>
             <div>
               <h1 className="font-bold text-gray-900 text-lg">ประเมินการสนทนา AI</h1>
-              <p className="text-base text-gray-700 font-medium">รางวัล: ฿TASK_CONFIGS.t3.rate</p>
+              <p className="text-base text-gray-700 font-medium">รางวัล: ฿{TASK_CONFIGS.t3.rate}</p>
             </div>
           </div>
           
@@ -330,7 +330,7 @@ export default function ChatQAEvaluation() {
               className="w-full py-4 bg-green-600 text-white rounded-2xl font-bold text-lg shadow-lg hover:bg-green-700 transition-colors flex items-center justify-center space-x-2"
             >
               <Check className="w-6 h-6" />
-              <span>ส่งการประเมิน (฿TASK_CONFIGS.t3.rate)</span>
+              <span>ส่งการประเมิน (฿{TASK_CONFIGS.t3.rate})</span>
             </Button>
           </CardContent>
         </Card>

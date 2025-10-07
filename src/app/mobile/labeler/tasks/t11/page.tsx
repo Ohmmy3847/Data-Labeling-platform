@@ -268,7 +268,7 @@ export default function VoiceRecordingBatch() {
           
           <div className="text-right">
             <div className="text-sm text-gray-600">รางวัล</div>
-            <div className="font-bold text-yellow-600">฿TASK_CONFIGS.t11.rate/ประโยค</div>
+            <div className="font-bold text-yellow-600">฿{TASK_CONFIGS.t11.rate}/ประโยค</div>
           </div>
         </div>
         
@@ -408,7 +408,7 @@ export default function VoiceRecordingBatch() {
                   ฿{(completedCount * TASK_CONFIGS.t11.rate).toFixed(2)}
                 </span>
                 <span className="text-gray-500 text-sm ml-1">
-                  (฿TASK_CONFIGS.t11.rate / ประโยค)
+                  (฿{TASK_CONFIGS.t11.rate} / ประโยค)
                 </span>
               </div>
             </CardContent>
