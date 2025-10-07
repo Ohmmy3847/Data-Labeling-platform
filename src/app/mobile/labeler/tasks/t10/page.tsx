@@ -153,13 +153,13 @@ export default function BoundingBoxTask() {
   };
 
   const submitTask = () => {
-    // Calculate earnings (฿TASK_CONFIGS.t10.rate per object)
-    const earnings = boxes.length * TASK_CONFIGS.t10.rate;
+    // Calculate earnings (฿TASK_CONFIGS.t10.rate per image, not per box)
+    const earnings = TASK_CONFIGS.t10.rate; // Fixed rate per image
     
     // Set task result and show summary
     setTaskResult({
-      completed: boxes.length,
-      total: boxes.length,
+      completed: 1, // 1 image completed
+      total: 1,
       earnings: earnings,
       completedAt: new Date().toLocaleString('th-TH')
     });
@@ -171,11 +171,11 @@ export default function BoundingBoxTask() {
       <TaskSummary
         taskResult={taskResult}
         taskInfo={{
-          name: 'การวาดกรอบวัตถุ',
-          description: 'การวาดกรอบวัตถุ',
-          emoji: '🎯',
-          color: 'teal',
-          unit: 'วัตถุ',
+          name: TASK_CONFIGS.t10.name,
+          description: TASK_CONFIGS.t10.description,
+          emoji: TASK_CONFIGS.t10.emoji,
+          color: TASK_CONFIGS.t10.color,
+          unit: TASK_CONFIGS.t10.unit,
           rate: TASK_CONFIGS.t10.rate
         }}
         onReset={() => {
@@ -193,9 +193,9 @@ export default function BoundingBoxTask() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <TaskHeader
-        title="วาดกรอบวัตถุ"
-        reward="฿TASK_CONFIGS.t10.rate / วัตถุ"
-        color="teal"
+        title={TASK_CONFIGS.t10.title}
+        reward={TASK_CONFIGS.t10.reward}
+        color={TASK_CONFIGS.t10.color}
         completedCount={boxes.length}
         totalCount={10}
       />
