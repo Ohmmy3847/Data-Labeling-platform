@@ -20,27 +20,29 @@ export default function MobileLabelerDashboard() {
   const todayTasks = LABELER_REWARDS.tasks.today;
 
   return (
-    <div className="min-h-screen bg-white pb-24">
+    <div className="min-h-screen bg-white pb-20 sm:pb-24 md:pb-28">
       {/* Mobile Header - High Contrast */}
-      <header className="bg-white shadow-lg px-4 py-5 sticky top-0 z-50 border-b-4 border-green-600">
-        <div className="flex items-center justify-between max-w-2xl mx-auto">
-          <div className="flex items-center space-x-4">
-            <div className="w-14 h-14 bg-gradient-to-r from-green-700 to-emerald-800 rounded-3xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-xl">น</span>
+      <header className="bg-white shadow-lg px-4 py-4 sm:py-5 sticky top-0 z-50 border-b-4 border-green-600">
+        <div className="container-responsive max-w-4xl mx-auto">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-green-700 to-emerald-800 rounded-3xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-fluid-lg sm:text-fluid-xl">น</span>
+              </div>
+              <div>
+                <h1 className="font-bold text-gray-900 text-fluid-lg sm:text-fluid-xl">สวัสดี คุณ{currentUser.name}! 👋</h1>
+                <p className="text-fluid-sm sm:text-fluid-base text-gray-700 font-semibold">วันนี้พร้อมทำงานหรือยัง?</p>
+              </div>
             </div>
-            <div>
-              <h1 className="font-bold text-gray-900 text-xl">สวัสดี คุณ{currentUser.name}! 👋</h1>
-              <p className="text-base text-gray-700 font-semibold">วันนี้พร้อมทำงานหรือยัง?</p>
-            </div>
+            
+            <button className="touch-target w-12 h-12 sm:w-14 sm:h-14 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+              <Bell className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
           </div>
-          
-          <button className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg">
-            <Bell className="w-6 h-6 text-white" />
-          </button>
         </div>
       </header>
 
-      <div className="px-4 py-6 max-w-2xl mx-auto">
+      <div className="container-responsive max-w-4xl mx-auto py-6 sm:py-8">
         {/* Today Summary - Key Point #1 - High Contrast */}
         <Card variant="elevated" padding="xl" className="mb-6 border-4 border-green-600 shadow-xl">
           <CardContent>

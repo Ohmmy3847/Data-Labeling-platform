@@ -8,27 +8,29 @@ import BottomNavigation from '@/components/shared/BottomNavigation';
 
 export default function MobileLandingPage() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Mobile Header - Style เดียวกับ Labeler/Client */}
-      <header className="bg-white shadow-lg px-4 py-5 sticky top-0 z-50 border-b-4 border-green-600">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <div className="w-14 h-14 bg-gradient-to-r from-green-700 to-emerald-800 rounded-3xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-bold text-xl">น</span>
+    <div className="min-h-screen bg-white pb-24 sm:pb-28">
+      {/* Mobile Header - Responsive */}
+      <header className="bg-white shadow-lg px-4 py-4 sm:py-5 sticky top-0 z-50 border-b-4 border-green-600">
+        <div className="container-responsive max-w-4xl mx-auto">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-green-700 to-emerald-800 rounded-3xl flex items-center justify-center shadow-lg">
+                <span className="text-white font-bold text-fluid-lg sm:text-fluid-xl">น</span>
+              </div>
+              <div>
+                <h1 className="font-bold text-gray-900 text-fluid-lg sm:text-fluid-xl">สวัสดีครับ! 👋</h1>
+                <p className="text-fluid-sm sm:text-fluid-base text-gray-700 font-semibold">เลือกตัวตนของคุณ</p>
+              </div>
             </div>
-            <div>
-              <h1 className="font-bold text-gray-900 text-xl">สวัสดีครับ! 👋</h1>
-              <p className="text-base text-gray-700 font-semibold">เลือกตัวตนของคุณ</p>
-            </div>
+            
+            <button className="touch-target w-12 h-12 sm:w-14 sm:h-14 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg active:scale-95 transition-transform">
+              <Settings className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </button>
           </div>
-          
-          <button className="w-12 h-12 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg">
-            <Settings className="w-6 h-6 text-white" />
-          </button>
         </div>
       </header>
 
-      <div className="px-4 py-6 pb-28">
+      <div className="container-responsive max-w-4xl mx-auto py-6 sm:py-8">
         {/* Hero Section */}
         <Card variant="elevated" padding="xl" className="mb-6 border-4 border-green-600 shadow-xl">
           <CardContent>
