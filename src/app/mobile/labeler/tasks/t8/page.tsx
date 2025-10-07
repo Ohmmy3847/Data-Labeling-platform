@@ -5,6 +5,7 @@ import { ArrowLeft, Send, CheckCircle2, User, MessageCircle, Star } from 'lucide
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 // Mock persona data
 const persona = {

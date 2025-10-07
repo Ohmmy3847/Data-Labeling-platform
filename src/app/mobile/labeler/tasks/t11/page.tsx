@@ -7,6 +7,7 @@ import { ArrowLeft, Check, RefreshCw, Mic, Square, Play, Pause } from 'lucide-re
 import Button from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import BottomNavigation from '@/components/shared/BottomNavigation';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 interface SentenceBatch {
   id: number;
@@ -164,7 +165,7 @@ export default function VoiceRecordingBatch() {
 
   const submitBatch = () => {
     const completed = responses.filter(r => r.isRecorded).length;
-    const earnings = completed * 0.25;
+    const earnings = completed * TASK_CONFIGS.t11.rate;
     
     setTaskResult({
       completed: completed,
@@ -267,7 +268,7 @@ export default function VoiceRecordingBatch() {
           
           <div className="text-right">
             <div className="text-sm text-gray-600">รางวัล</div>
-            <div className="font-bold text-yellow-600">฿0.25/ประโยค</div>
+            <div className="font-bold text-yellow-600">฿TASK_CONFIGS.t11.rate/ประโยค</div>
           </div>
         </div>
         
@@ -404,10 +405,10 @@ export default function VoiceRecordingBatch() {
               </div>
               <div className="text-center mt-2">
                 <span className="text-lg font-bold text-yellow-600">
-                  ฿{(completedCount * 0.25).toFixed(2)}
+                  ฿{(completedCount * TASK_CONFIGS.t11.rate).toFixed(2)}
                 </span>
                 <span className="text-gray-500 text-sm ml-1">
-                  (฿0.25 / ประโยค)
+                  (฿TASK_CONFIGS.t11.rate / ประโยค)
                 </span>
               </div>
             </CardContent>

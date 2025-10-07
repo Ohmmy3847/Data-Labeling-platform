@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import TaskSummary from '@/components/shared/TaskSummary';
 import TaskHeader from '@/components/shared/TaskHeader';
 import BottomNavigation from '@/components/shared/BottomNavigation';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 interface BoundingBox {
   id: string;
@@ -152,8 +153,8 @@ export default function BoundingBoxTask() {
   };
 
   const submitTask = () => {
-    // Calculate earnings (฿0.50 per object)
-    const earnings = boxes.length * 0.50;
+    // Calculate earnings (฿TASK_CONFIGS.t10.rate per object)
+    const earnings = boxes.length * TASK_CONFIGS.t10.rate;
     
     // Set task result and show summary
     setTaskResult({
@@ -175,7 +176,7 @@ export default function BoundingBoxTask() {
           emoji: '🎯',
           color: 'teal',
           unit: 'วัตถุ',
-          rate: 0.50
+          rate: TASK_CONFIGS.t10.rate
         }}
         onReset={() => {
           setShowSummary(false);
@@ -193,7 +194,7 @@ export default function BoundingBoxTask() {
       {/* Header */}
       <TaskHeader
         title="วาดกรอบวัตถุ"
-        reward="฿0.50 / วัตถุ"
+        reward="฿TASK_CONFIGS.t10.rate / วัตถุ"
         color="teal"
         completedCount={boxes.length}
         totalCount={10}

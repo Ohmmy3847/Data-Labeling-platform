@@ -5,6 +5,7 @@ import { ArrowLeft, Send, CheckCircle2, Star, FileText, Target } from 'lucide-re
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 // Mock rubric evaluation data
 const taskDescription = "ให้ AI เขียนบทความอธิบายเรื่อง 'ผลกระทบของโซเชียลมีเดียต่อสุขภาพจิต' ประมาณ 500 คำ";

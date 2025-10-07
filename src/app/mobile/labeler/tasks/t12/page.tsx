@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { gradients, components, typography } from '@/styles/designSystem';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 interface TaskResult {
   url: string;

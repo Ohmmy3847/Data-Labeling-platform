@@ -5,6 +5,7 @@ import { ArrowLeft, Send, ThumbsUp, ThumbsDown, Star, CheckCircle2 } from 'lucid
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 // Mock RLHF comparison data
 const prompt = "อธิบายเรื่องการลงทุนในหุ้นให้คนที่ไม่มีความรู้เรื่องการเงินเลยฟัง";

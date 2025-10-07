@@ -5,6 +5,7 @@ import { ArrowLeft, Send, AlertTriangle, CheckCircle2, Eye, Shield } from 'lucid
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { TASK_CONFIGS } from '@/config/taskConfig';
 
 // Mock bias audit data
 const auditScenarios = [
