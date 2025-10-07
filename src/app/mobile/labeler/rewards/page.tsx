@@ -19,9 +19,10 @@ export default function RewardsPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-yellow-500 to-orange-600 px-4 py-6 shadow-lg">
+    <div className="min-h-screen bg-gray-50 pb-24">
+      <div className="max-w-2xl mx-auto">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-yellow-500 to-orange-600 px-4 py-5 shadow-lg">
         <div className="flex items-center justify-between mb-6">
           <Link href="/mobile/labeler/profile">
             <button className="w-12 h-12 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
@@ -192,6 +193,7 @@ export default function RewardsPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
       </div>
     </div>
   );

@@ -8,44 +8,45 @@ import { LABELER_REWARDS, WITHDRAWAL_CONFIG } from '@/config/rewardsConfig';
 
 export default function WalletPage() {
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-blue-500 to-cyan-600 px-4 py-6 shadow-lg">
-        <div className="flex items-center justify-between mb-6">
-          <Link href="/mobile/labeler/profile">
-            <button className="w-12 h-12 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
-              <ArrowLeft className="w-6 h-6 text-white" />
-            </button>
-          </Link>
-          <h1 className="text-2xl font-bold text-white">กระเป๋าเงิน</h1>
-          <div className="w-12"></div>
-        </div>
+    <div className="min-h-screen bg-gray-50 pb-24">
+      <div className="max-w-2xl mx-auto">
+        {/* Header */}
+        <header className="bg-gradient-to-r from-blue-500 to-cyan-600 px-4 py-5 shadow-lg">
+          <div className="flex items-center justify-between mb-4">
+            <Link href="/mobile/labeler/profile">
+              <button className="w-12 h-12 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center">
+                <ArrowLeft className="w-6 h-6 text-white" />
+              </button>
+            </Link>
+            <h1 className="text-xl font-bold text-white">กระเป๋าเงิน</h1>
+            <div className="w-12"></div>
+          </div>
 
-        {/* Balance Card */}
-        <Card className="bg-white/95 backdrop-blur">
-          <CardContent className="p-6">
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-2">
-                <Wallet className="w-8 h-8 text-blue-600 mr-2" />
-                <span className="text-gray-600 font-medium">ยอดคงเหลือ</span>
-              </div>
-              <div className="text-5xl font-bold text-blue-600 mb-4">
-                ฿{LABELER_REWARDS.currentBalance.toFixed(2)}
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-left">
-                  <div className="text-sm text-gray-600">รายได้เดือนนี้</div>
-                  <div className="text-xl font-bold text-green-600">+฿{LABELER_REWARDS.earnings.thisMonth.toFixed(2)}</div>
+          {/* Balance Card */}
+          <Card className="bg-white/95 backdrop-blur">
+            <CardContent className="p-5">
+              <div className="text-center">
+                <div className="flex items-center justify-center mb-2">
+                  <Wallet className="w-6 h-6 text-blue-600 mr-2 flex-shrink-0" />
+                  <span className="text-gray-600 font-medium text-sm">ยอดคงเหลือ</span>
                 </div>
-                <div className="text-right">
-                  <div className="text-sm text-gray-600">ถอนแล้ว</div>
-                  <div className="text-xl font-bold text-gray-900">฿{LABELER_REWARDS.earnings.withdrawn.toFixed(2)}</div>
+                <div className="text-3xl font-bold text-blue-600 mb-3 break-words">
+                  ฿{LABELER_REWARDS.currentBalance.toFixed(2)}
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-left">
+                    <div className="text-xs text-gray-600">รายได้เดือนนี้</div>
+                    <div className="text-lg font-bold text-green-600 break-words">+฿{LABELER_REWARDS.earnings.thisMonth.toFixed(2)}</div>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-xs text-gray-600">ถอนแล้ว</div>
+                    <div className="text-lg font-bold text-gray-900 break-words">฿{LABELER_REWARDS.earnings.withdrawn.toFixed(2)}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
-      </header>
+            </CardContent>
+          </Card>
+        </header>
 
       <div className="px-4 py-6 space-y-6">
         {/* Quick Actions */}
@@ -170,6 +171,7 @@ export default function WalletPage() {
             </div>
           </CardContent>
         </Card>
+      </div>
       </div>
     </div>
   );

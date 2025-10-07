@@ -16,10 +16,10 @@ export default function MobileProfilePage() {
   const user = mockLabelers[0]; // Current user
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white pb-24">
       {/* Mobile Header - High Contrast */}
       <header className="bg-white shadow-lg px-4 py-4 sticky top-0 z-50 border-b-4 border-purple-600">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-w-2xl mx-auto">
           <div className="flex items-center space-x-3">
             <Link href="/mobile/labeler">
               <button className="w-10 h-10 bg-gray-900 rounded-2xl flex items-center justify-center shadow-lg">
@@ -27,8 +27,8 @@ export default function MobileProfilePage() {
               </button>
             </Link>
             <div>
-              <h1 className="font-bold text-gray-900 text-xl">โปรไฟล์</h1>
-              <p className="text-base text-gray-700 font-medium">ข้อมูลส่วนตัว</p>
+              <h1 className="font-bold text-gray-900 text-lg">โปรไฟล์</h1>
+              <p className="text-sm text-gray-700 font-medium">ข้อมูลส่วนตัว</p>
             </div>
           </div>
           
@@ -40,7 +40,7 @@ export default function MobileProfilePage() {
         </div>
       </header>
 
-      <div className="px-4 py-6">
+      <div className="px-4 py-6 max-w-2xl mx-auto">
         {/* Profile Header - High Contrast */}
         <Card variant="elevated" padding="xl" className="mb-6 border-3 border-gray-300">
           <CardContent>
@@ -58,34 +58,34 @@ export default function MobileProfilePage() {
               </div>
               
               {/* User Info */}
-              <h2 className="text-xl font-bold text-gray-900 mb-1">
+              <h2 className="text-lg font-bold text-gray-900 mb-1 break-words">
                 คุณ{user.name}
               </h2>
-              <p className="text-gray-700 font-semibold mb-3">
+              <p className="text-gray-700 font-semibold mb-2 text-sm">
                 {user.location} • อายุ {user.age} ปี
               </p>
               
               {/* Level Badge */}
-              <div className="inline-flex items-center bg-white/80 rounded-2xl px-4 py-2 mb-4 border-3 border-gray-300 shadow-lg">
-                <Star className="w-4 h-4 text-yellow-500 mr-2" />
-                <span className="font-bold text-gray-900">
+              <div className="inline-flex items-center bg-white/80 rounded-2xl px-3 py-2 mb-3 border-3 border-gray-300 shadow-lg">
+                <Star className="w-4 h-4 text-yellow-500 mr-2 flex-shrink-0" />
+                <span className="font-bold text-gray-900 text-sm break-words">
                   เลเวล {user.level} • {user.points.toLocaleString()} คะแนน
                 </span>
               </div>
               
               {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-3">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{user.tasksCompleted}</div>
-                  <div className="text-base text-gray-700 font-semibold">งานสำเร็จ</div>
+                  <div className="text-xl font-bold text-gray-900">{user.tasksCompleted}</div>
+                  <div className="text-xs text-gray-700 font-semibold">งานสำเร็จ</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{Math.round(user.accuracy)}%</div>
-                  <div className="text-base text-gray-700 font-semibold">ความแม่นยำ</div>
+                  <div className="text-xl font-bold text-gray-900">{Math.round(user.accuracy)}%</div>
+                  <div className="text-xs text-gray-700 font-semibold">ความแม่นยำ</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">฿{user.balance.toFixed(2)}</div>
-                  <div className="text-base text-gray-700 font-semibold">ยอดเงิน</div>
+                  <div className="text-xl font-bold text-gray-900 break-words">฿{user.balance.toFixed(2)}</div>
+                  <div className="text-xs text-gray-700 font-semibold">ยอดเงิน</div>
                 </div>
               </div>
             </div>

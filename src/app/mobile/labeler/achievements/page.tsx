@@ -73,7 +73,8 @@ export default function AchievementsPage() {
   const totalPoints = LABELER_REWARDS.points.current;
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-20">
+    <div className="min-h-screen bg-gray-50 pb-24">
+      <div className="max-w-2xl mx-auto">
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-500 to-pink-600 px-4 py-6 shadow-lg">
         <div className="flex items-center justify-between mb-6">
@@ -193,6 +194,7 @@ export default function AchievementsPage() {
             <p className="text-sm text-gray-500">ความสำเร็จใหม่กำลังจะมาเร็วๆ นี้!</p>
           </CardContent>
         </Card>
+      </div>
       </div>
     </div>
   );
