@@ -3,7 +3,84 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Responsive Container Widths */
+  --container-mobile: 100%;
+  --container-tablet: 640px;
+  --container-desktop: 768px;
+  --container-xl: 896px;
+  
+  /* Fluid Typography Scale (Mobile First) */
+  --text-xs: clamp(0.75rem, 2vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 2.5vw, 1rem);
+  --text-base: clamp(1rem, 3vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 3.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 4vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 5vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 6vw, 2.25rem);
+  
+  /* Touch Target Sizes */
+  --touch-sm: 44px;
+  --touch-md: 48px;
+  --touch-lg: 56px;
+  
+  /* Spacing Scale */
+  --spacing-xs: clamp(0.5rem, 2vw, 0.75rem);
+  --spacing-sm: clamp(0.75rem, 2.5vw, 1rem);
+  --spacing-md: clamp(1rem, 3vw, 1.25rem);
+  --spacing-lg: clamp(1.25rem, 3.5vw, 1.5rem);
+  --spacing-xl: clamp(1.5rem, 4vw, 2rem);
 }
+
+/* Responsive Container Classes */
+.container-responsive {
+  width: 100%;
+  max-width: var(--container-mobile);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: var(--container-tablet);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: var(--container-desktop);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: var(--container-xl);
+  }
+}
+
+/* Touch-Friendly Interactive Elements */
+.touch-target {
+  min-width: var(--touch-md);
+  min-height: var(--touch-md);
+}
+
+.touch-target-lg {
+  min-width: var(--touch-lg);
+  min-height: var(--touch-lg);
+}
+
+/* Fluid Typography Utilities */
+.text-fluid-xs { font-size: var(--text-xs); }
+.text-fluid-sm { font-size: var(--text-sm); }
+.text-fluid-base { font-size: var(--text-base); }
+.text-fluid-lg { font-size: var(--text-lg); }
+.text-fluid-xl { font-size: var(--text-xl); }
+.text-fluid-2xl { font-size: var(--text-2xl); }
+.text-fluid-3xl { font-size: var(--text-3xl); }
 
 @theme inline {
   --color-background: var(--background);
