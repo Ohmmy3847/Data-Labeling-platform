@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { 
   Building2, Plus, Users, TrendingUp, Eye, 
   FileText, Activity, DollarSign, Settings,
-  BarChart3, PieChart, Calendar
+  BarChart3, PieChart, Calendar, FolderOpen, CheckCircle
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import Button from '@/components/ui/Button';
@@ -61,15 +61,16 @@ export default function MobileClientDashboard() {
         </div>
 
         {/* Key Metrics - Mobile Grid */}
+                {/* Stats Overview - Key Point #1 - เน้นภาพรวมโปรเจกต์ */}
         <div className="grid grid-cols-2 gap-4 mb-6">
           <Card variant="elevated" padding="lg">
             <CardContent>
               <div className="text-center">
-                <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-2">
-                  <FileText className="w-6 h-6 text-green-600" />
+                <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                  <FolderOpen className="w-6 h-6 text-blue-600" />
                 </div>
                 <div className="text-2xl font-bold text-green-800">{activeProjects}</div>
-                <div className="text-sm text-green-600">โปรเจคที่รัน</div>
+                <div className="text-sm text-green-600">โปรเจกต์กำลังรัน</div>
               </div>
             </CardContent>
           </Card>
@@ -77,11 +78,13 @@ export default function MobileClientDashboard() {
           <Card variant="elevated" padding="lg">
             <CardContent>
               <div className="text-center">
-                <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-2">
-                  <Users className="w-6 h-6 text-emerald-600" />
+                <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-2">
+                  <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
-                <div className="text-2xl font-bold text-green-800">2.1K</div>
-                <div className="text-sm text-green-600">ปู่ย่าออนไลน์</div>
+                <div className="text-2xl font-bold text-green-800">
+                  {mockProjects.filter(p => p.status === 'completed').length}
+                </div>
+                <div className="text-sm text-green-600">โปรเจกต์สำเร็จ</div>
               </div>
             </CardContent>
           </Card>
@@ -93,7 +96,7 @@ export default function MobileClientDashboard() {
                   <TrendingUp className="w-6 h-6 text-teal-600" />
                 </div>
                 <div className="text-2xl font-bold text-green-800">{Math.round(avgProgress)}%</div>
-                <div className="text-sm text-green-600">ความคืบหน้า</div>
+                <div className="text-sm text-green-600">ความคืบหน้าเฉลี่ย</div>
               </div>
             </CardContent>
           </Card>
@@ -105,7 +108,7 @@ export default function MobileClientDashboard() {
                   <DollarSign className="w-6 h-6 text-green-600" />
                 </div>
                 <div className="text-xl font-bold text-green-800">฿{(totalCost/1000).toFixed(0)}K</div>
-                <div className="text-sm text-green-600">งบประมาณ</div>
+                <div className="text-sm text-green-600">ค่าใช้จ่ายรวม</div>
               </div>
             </CardContent>
           </Card>
@@ -161,45 +164,90 @@ export default function MobileClientDashboard() {
           </div>
         </div>
 
-        {/* Recent Projects - Key Point #3 */}
+        {/* Recent Projects - Key Point #3 - แสดงเป็นรายโปรเจกต์ */}
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold text-green-800">โปรเจคล่าสุด</h3>
+            <h3 className="text-lg font-semibold text-green-800">โปรเจกต์ทั้งหมด</h3>
             <Link href="/mobile/client/projects" className="text-green-600 text-sm font-medium">
-              ดูทั้งหมด
+              จัดการ
             </Link>
           </div>
           
           <div className="space-y-3">
-            {mockProjects.slice(0, 3).map((project) => (
-              <Link key={project.id} href={`/mobile/client/projects/${project.id}`}>
-                <Card variant="elevated" padding="lg" className="group active:scale-98 transition-transform">
-                  <CardContent>
-                    <div className="flex items-center space-x-3">
-                      <div className={`w-3 h-3 rounded-full ${
-                        project.status === 'active' ? 'bg-green-500' :
-                        project.status === 'completed' ? 'bg-blue-500' : 'bg-yellow-500'
-                      }`}></div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="font-medium text-green-800 truncate">{project.title}</h4>
-                        <p className="text-sm text-green-600">
-                          {project.completedItems}/{project.totalItems} งาน
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-sm font-medium text-green-800">
-                          {Math.round(project.completedItems / project.totalItems * 100)}%
+            {mockProjects.map((project) => {
+              const progress = Math.round(project.completedItems / project.totalItems * 100);
+              const cost = project.rewardPerLabel * project.completedItems;
+              
+              return (
+                <Link key={project.id} href={`/mobile/client/projects/${project.id}`}>
+                  <Card variant="elevated" padding="lg" className="group active:scale-98 transition-transform">
+                    <CardContent>
+                      <div className="space-y-3">
+                        {/* Header */}
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center space-x-2 mb-1">
+                              <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                                project.status === 'active' ? 'bg-green-500' :
+                                project.status === 'completed' ? 'bg-blue-500' : 'bg-yellow-500'
+                              }`}></div>
+                              <h4 className="font-bold text-green-800 truncate">{project.title}</h4>
+                            </div>
+                            <p className="text-xs text-green-600 line-clamp-1">{project.description}</p>
+                          </div>
+                          <div className={`px-2 py-1 rounded-lg text-xs font-medium flex-shrink-0 ml-2 ${
+                            project.status === 'active' ? 'bg-green-100 text-green-700' :
+                            project.status === 'completed' ? 'bg-blue-100 text-blue-700' : 
+                            'bg-yellow-100 text-yellow-700'
+                          }`}>
+                            {project.status === 'active' ? 'กำลังรัน' : 
+                             project.status === 'completed' ? 'สำเร็จ' : 'รอเริ่ม'}
+                          </div>
                         </div>
-                        <div className="text-xs text-green-600">
-                          {project.status === 'active' ? 'กำลังดำเนินการ' : 
-                           project.status === 'completed' ? 'สำเร็จ' : 'รอเริ่ม'}
+
+                        {/* Progress Bar */}
+                        <div>
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-xs text-green-600">ความคืบหน้า</span>
+                            <span className="text-xs font-bold text-green-800">{progress}%</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div 
+                              className={`h-2 rounded-full transition-all ${
+                                progress === 100 ? 'bg-blue-500' : 'bg-green-500'
+                              }`}
+                              style={{ width: `${progress}%` }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {/* Stats */}
+                        <div className="grid grid-cols-3 gap-2 pt-2 border-t border-green-100">
+                          <div className="text-center">
+                            <div className="text-xs text-green-600">งาน</div>
+                            <div className="text-sm font-bold text-green-800">
+                              {project.completedItems}/{project.totalItems}
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xs text-green-600">ค่าใช้จ่าย</div>
+                            <div className="text-sm font-bold text-green-800">
+                              ฿{cost.toFixed(0)}
+                            </div>
+                          </div>
+                          <div className="text-center">
+                            <div className="text-xs text-green-600">ความแม่น</div>
+                            <div className="text-sm font-bold text-green-800">
+                              {project.currentAccuracy}%
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
+                    </CardContent>
+                  </Card>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -12,11 +12,11 @@ import { gradients, typography, components, getBiasRiskColor, getImpactBorderCol
 
 const demographicData = {
   age: {
-    '18-29': { count: 45, percentage: 32, sentiment_positive: 78 },
-    '30-39': { count: 38, percentage: 27, sentiment_positive: 72 },
-    '40-49': { count: 31, percentage: 22, sentiment_positive: 68 },
-    '50-59': { count: 18, percentage: 13, sentiment_positive: 65 },
-    '60+': { count: 8, percentage: 6, sentiment_positive: 58 }
+    '60-69': { count: 85, percentage: 38, sentiment_positive: 92 },
+    '70-79': { count: 72, percentage: 32, sentiment_positive: 89 },
+    '80+': { count: 38, percentage: 17, sentiment_positive: 85 },
+    '55-59': { count: 22, percentage: 10, sentiment_positive: 88 },
+    '50-54': { count: 8, percentage: 3, sentiment_positive: 86 }
   },
   gender: {
     'หญิง': { count: 76, percentage: 54, accuracy: 94 },
@@ -65,10 +65,10 @@ const projectStats = [
 const biasInsights = [
   {
     type: 'age',
-    title: 'อคติด้านอายุ',
-    finding: 'ผู้สูงอายุ 60+ แปลความรู้สึกเป็นกลางมากกว่าคนรุ่นใหม่ 15%',
-    impact: 'medium',
-    recommendation: 'เพิ่มข้อมูลฝึกอบรมสำหรับผู้สูงอายุ'
+    title: 'การกระจายผู้สูงอายุ',
+    finding: 'ผู้สูงอายุ 60-79 ปี เป็นกลุ่มหลัก (70%) มีความแม่นยำสูง',
+    impact: 'low',
+    recommendation: 'ควรเพิ่มกลุ่ม 80+ เพื่อความหลากหลาย'
   },
   {
     type: 'gender',
